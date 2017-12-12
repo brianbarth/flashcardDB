@@ -4,7 +4,7 @@
   require('lib/Flash.php');
   $hotID = $_GET['id'];
   $data = array();
-  $words = NewWord::open( $data );
+  //$words = NewWord::open( $data );
   $hotWord = NewWord::find( $hotID ); 
 ?>
 

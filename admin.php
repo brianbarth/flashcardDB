@@ -41,7 +41,7 @@
     <div class="container">
       <div class="row flex-wrap">
       <?php foreach ($words as $word) : ?>
-        <div class="col-2">
+        <div class="col-6 col-sm-4 col-md-2 text-center p-1">
           <?php echo "<a href='edit.php?id=$word->id'>" . $word->word . "</a>" ?>
         </div>               
       <? endforeach ?>
@@ -53,7 +53,7 @@
         if (isset($_SESSION['flash'])) {          // here for future development  
             echo '<div class="flash' . $_SESSION['flash']['type'] . '">';
             echo '<p>' . $_SESSION['flash']['message'] . '</p>';
-            echo '</div';
+            echo '</div>';
             unset($_SESSION['flash']);
         } 
     ?> 

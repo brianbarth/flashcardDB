@@ -21,13 +21,14 @@
     public function open($data) {
         self::init_db();
 
-        $result = self::$db->query('select * from words'); 
+        $result = self::$db->query('select * from words ORDER BY RAND()'); 
     
         while ( $record = $result->fetch() ) {
            
             $wordValue = new NewWord(array( 'id'=>$record[0], 'word'=>$record[1] ));
 
-            $data[$wordValue->id] = $wordValue;
+            // $data[$wordValue->id] = $wordValue;
+            array_push($data, $wordValue);
         }                      
 
         return $data;  
