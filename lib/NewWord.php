@@ -21,7 +21,7 @@
     public function open($data) {
         self::init_db();
 
-        $result = self::$db->query('select * from words ORDER BY RAND()'); 
+        $result = self::$db->query('select * from words'); 
     
         while ( $record = $result->fetch() ) {
            

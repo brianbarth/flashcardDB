@@ -48,7 +48,7 @@
     <header>
     <div class="container">
         <div class="jumbotron text-center">
-            <h1>Flash Card Admin *LOGIN*</h1>
+            <h1>High-Frequency Words *LOGIN*</h1>
         </div> 
     </div>
     <div class="container">
@@ -81,13 +81,23 @@
         </div>       
     </main> 
     <footer>
+        <?php if ($_SESSION['flash']['type'] == 'alert' ) : ?>
+            <div class='container'>
+            <div class='alert alert-danger text-center'role='alert'>
+        <?php endif ?>
+        <?php if ($_SESSION['flash']['type'] == 'notice' ) : ?>
+            <div class='container'>
+            <div class='alert alert-success text-center' role='alert'> 
+        <?php endif ?>
         <?php
-            if (isset($_SESSION['flash'])) {          // here for future development  
+            if (isset($_SESSION['flash'])) {             
                 echo '<div class="flash' . $_SESSION['flash']['type'] . '">';
                 echo '<p>' . $_SESSION['flash']['message'] . '</p>';
                 echo '</div';
                 unset($_SESSION['flash']);
             } 
-        ?> 
-    </footer>     
+        ?>
+        </div>
+        </div>
+    </footer> 
 </html>

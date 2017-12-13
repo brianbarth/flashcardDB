@@ -22,37 +22,63 @@
   <header>
     <div class="container">
         <div class="jumbotron text-center">
-            <h1>Administration *EDIT*</h1>
+            <h1>High-Frequency Words</h1>
         </div> 
     </div>
-    <div class="container">
-        <div id="nav" class="container well-sm text-right" style="background-color: #e3f2fd;">
-            <a href='logout.php'>LOGOUT</a>
-            <a href='admin.php'>MAIN ADMIN</a>
-            <a href='index.php'>HOME</a>
-            <a href="delete.php?id=<?php echo $hotID ?>">DELETE</a>
-            <a href="update.php?id=<?php echo $hotID ?>">UPDATE</a>      
-        </div>
-    </div> 
   </header>
+  <div class="container">
+    <nav class="navbar navbar-expand navbar-dark bg-dark justify-content-between">
+      <div class="navbar-brand">Edit Page</div>
+      <div style="width: 100%"></div>
+      <div class="navbar-collapse collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="index.php">HOME <span class="sr-only"></span></a>
+          </li>
+          <li class="nav-item"> 
+            <a class="nav-link" href="admin.php">ADMIN</a> 
+          </li>
+          <li class="nav-item"> 
+            <a class="nav-link" href="update.php?id=<?php echo $hotID ?>">UPDATE</a> 
+          </li> 
+            <li class="nav-item">
+              <a class="nav-link" href="delete.php?id=<?php echo $hotID ?>">DELETE</a>
+            </li>
+          <li class="nav-item">
+            <a class="nav-link" href='logout.php'>LOGOUT</a>
+          </li>
+        </ul>
+      </div>    
+    </nav>
+  </div>
   <main>
     <div class="container">
       <div class="row"> 
         <div class="col text-center">
-          <p id="editWord">Chosen Word: <?php echo $hotWord->word; ?></p> 
+          <p id="editWord">Selected Word: <span class="spanWords"><?php echo $hotWord->word; ?></p></span> 
         </div> 
       </div> 
     </div> 
   </main>
   <footer>
-    <?php
-      if (isset($_SESSION['flash'])) {          // here for future development  
-            echo '<div class="flash' . $_SESSION['flash']['type'] . '">';
-            echo '<p>' . $_SESSION['flash']['message'] . '</p>';
-            echo '</div';
-            unset($_SESSION['flash']);
-      } 
-    ?>  
+    <?php if ($_SESSION['flash']['type'] == 'alert' ) : ?>
+        <div class='container'>
+        <div class='alert alert-danger text-center'role='alert'>
+    <?php endif ?>
+    <?php if ($_SESSION['flash']['type'] == 'notice' ) : ?>
+        <div class='container'>
+        <div class='alert alert-success text-center' role='alert'> 
+    <?php endif ?>
+      <?php
+          if (isset($_SESSION['flash'])) {             
+              echo '<div class="flash' . $_SESSION['flash']['type'] . '">';
+              echo '<p>' . $_SESSION['flash']['message'] . '</p>';
+              echo '</div';
+              unset($_SESSION['flash']);
+          } 
+      ?>
+      </div>
+      </div>
   </footer>
   </body>
   </html> 

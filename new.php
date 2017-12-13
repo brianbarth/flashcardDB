@@ -40,34 +40,42 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>NewWord</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-    <link rel="stylesheet" href="style/mystyles.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 <body>
     <header>
         <div class="container">
             <div class="jumbotron text-center">
-            <h1>High Frequency Words</h1>
+            <h1>High-Frequency Words</h1>
             </div>
-        </div>
-        <div class="container">
-            <div id="nav" class="container well-sm text-right" style="background-color: #e3f2fd;">
-                <a href='index.php'>HOME</a>
-            </div>
-        </div>     
-    </header> 
+        </div> 
+    </header>
+    <div class="container">
+    <nav class="navbar navbar-expand navbar-dark bg-dark justify-content-between">
+      <div class="navbar-brand">New Word</div>
+      <div style="width: 100%"></div>
+      <div class="navbar-collapse collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="admin.php">ADMIN</a>
+            </li> 
+          <li class="nav-item">
+            <a class="nav-link" href="index.php">HOME <span class="sr-only"></span></a>
+          </li>     
+        </ul>
+      </div>    
+    </nav>
+  </div> 
     <main>
         <div class="container">
-            <h2>Add Word</h2>
-        </div>
-        <div class="container">
-            <form action='new.php' method='post'>
+            <form class="padding" action='new.php' method='post'>
             <?php   if ( isset( $errors['name'])) {
                         echo "<div class='form-group' id='eb'>";
                     } else {
                         echo "<div class='form-group'>";
                     }      
             ?>
-            <label for="name">NEW WORD</label><input class="form-control" type='text' name='word' id='word' value="<?php echo $_POST['word'] ?>">
+            <label for="name">ADD WORD</label><input class="form-control" type='text' name='word' id='word' value="<?php echo $_POST['word'] ?>">
             </div>
             <?php   if ( isset( $errors['description'])) {
                         echo "<div class='form-group' id='eb'>";

@@ -2,10 +2,9 @@
     session_start();
     require('lib/NewWord.php');
     require('lib/Flash.php');
-    //require('js/scripts.js');
     $data = array();
-    $words = NewWord::open($data);
-    $wordsJSON = json_encode($words);
+    $words = NewWord::open( $data );
+    $wordsJSON = json_encode( $words, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE );
     $rndNum = '';
 ?>
 
@@ -21,8 +20,8 @@
 </head>
 
     <script type="text/javascript">
-        var words= JSON.parse('<?= $wordsJSON; ?>')                                            
-        window.onload = function() {nextWord(words)};
+        var words = JSON.parse('<?= $wordsJSON; ?>');                                            
+        window.onload = function() { nextWord(words) };
     </script>
 
 <body>
@@ -30,16 +29,18 @@
         <div class="jumbotron jumbotron-fluid">
             <div class="container">      
                 <div class="row">
-                    <div class="col text-left">
+                    <div class="col-12 text-center">
                         <h2>High-Frequency Words</h2>
                     </div>
                     <div class="col text-right">
-                        <a href='admin.php'>ADMIN</a>
+                        <?php if ( $_SESSION['loggedin'] == true && $_SESSION['superUser'] == true ) : ?>
+                            <a href='admin.php'>ADMIN</a>
+                        <?php endif ?>
                         <?php if ( $_SESSION['loggedin'] == !true ) : ?>
-                            <a href="login.php">Login</a>
+                            <a href="login.php">LOGIN</a>
                         <? endif ?>
                         <?php if ( $_SESSION['loggedin'] == true ) : ?>
-                            <a href='logout.php'>Logout</a>
+                            <a href='logout.php'>LOGOUT</a>
                         <?php endif ?>
                     </div> 
                 </div>
@@ -60,16 +61,25 @@
     <div id="button2">
         <button type="button">SAY WORD</button>
     </div>
-    <footer>
+    <!-- <footer>
+        <?php if ($_SESSION['flash']['type'] == 'alert' ) : ?>
+            <div class='container'>
+            <div class='alert alert-danger text-center'role='alert'>
+        <?php endif ?>
+        <?php if ($_SESSION['flash']['type'] == 'notice' ) : ?>
+            <div class='container'>
+            <div class='alert alert-success text-center' role='alert'> 
+        <?php endif ?>
         <?php
-            if (isset($_SESSION['flash'])) {          // here for future development  
+            if (isset($_SESSION['flash'])) {             
                 echo '<div class="flash' . $_SESSION['flash']['type'] . '">';
                 echo '<p>' . $_SESSION['flash']['message'] . '</p>';
                 echo '</div';
                 unset($_SESSION['flash']);
             } 
-        ?> 
-    </footer> 
-
+        ?>
+        </div>
+        </div>
+    </footer>  -->
 </body>
 </html>
