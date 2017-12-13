@@ -45,7 +45,7 @@
 <body>
     <header>
         <div class="container">
-            <div class="jumbotron text-center">
+            <div class="jumbotron text-center mt-3">
             <h1>High-Frequency Words</h1>
             </div>
         </div> 

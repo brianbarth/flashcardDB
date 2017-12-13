@@ -25,28 +25,43 @@
     </script>
 
 <body>
-    <header> 
-        <div class="jumbotron jumbotron-fluid">
-            <div class="container">      
+    <header>      
+        <div class="container">      
+            <div class="jumbotron text-center mt-3">        
                 <div class="row">
-                    <div class="col-12 text-center">
-                        <h2>High-Frequency Words</h2>
+                    <div class="col">
+                        <h1>High-Frequency Words</h1>
                     </div>
-                    <div class="col text-right">
-                        <?php if ( $_SESSION['loggedin'] == true && $_SESSION['superUser'] == true ) : ?>
-                            <a href='admin.php'>ADMIN</a>
-                        <?php endif ?>
-                        <?php if ( $_SESSION['loggedin'] == !true ) : ?>
-                            <a href="login.php">LOGIN</a>
-                        <? endif ?>
-                        <?php if ( $_SESSION['loggedin'] == true ) : ?>
-                            <a href='logout.php'>LOGOUT</a>
-                        <?php endif ?>
-                    </div> 
                 </div>
-            </div>  
-        </div> 
+            </div> 
+        </div>        
     </header>
+
+    <div class="container pb-4">
+        <nav class="navbar navbar-expand navbar-dark bg-dark justify-content-between">
+        <div class="navbar-brand">HOME</div>
+        <div style="width: 100%"></div>
+        <div class="navbar-collapse collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <?php if ( $_SESSION['loggedin'] == true && $_SESSION['superUser'] == true ) : ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href='admin.php'>ADMIN</a>
+                    </li>
+                    <?php endif ?>
+                <?php if ( $_SESSION['loggedin'] == !true ) : ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.php">LOGIN</a>
+                    </li>
+                <? endif ?>
+                <?php if ( $_SESSION['loggedin'] == true ) : ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href='logout.php'>LOGOUT</a>
+                    </li>
+                <?php endif ?>   
+            </ul>
+        </div>    
+        </nav>
+    </div>
 
     <div class="mainContainer">
         <div class="backgroundImage">

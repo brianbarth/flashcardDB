@@ -71,3 +71,18 @@ a {
     font-style: bold;
     text-shadow: 2px 4px 2px gray;
 }
+#scrollBox {
+    border: 1px solid gray;
+    overflow: scroll;
+    height: 400px;
+}
+@media only screen and (max-height: 925px ) {
+     #scrollBox {
+        height: 200px;
+        overflow: scroll;
+    } 
+    .bigWords {
+        font-size: 16px;
+    }
+
+}

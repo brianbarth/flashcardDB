@@ -14,7 +14,7 @@
         Flash::set_alert('Word is not in list!');
     foreach ( $words as $word ) {
       if ( $word->word == $searchWord ) {
-        Flash::set_notice('Word is in list!');
+        Flash::set_notice('Word is in list!');   
       } 
     }
   }
@@ -32,7 +32,7 @@
 <body>
   <header>
     <div class="container">
-        <div class="jumbotron text-center">
+        <div class="jumbotron text-center mt-3">
             <h1>High-Frequency Words</h1>
         </div> 
     </div>
@@ -65,13 +65,18 @@
   </div>
 
   <div class="container"> 
-    <div class="row p-2"> 
-      <div class="col d-flex flex-row-reverse">
-        <form class="form-inline my-2 my-lg-0" action="admin.php" method="post">
-          <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search Words" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+    
+    <form action="admin.php" method="post">
+      <div class="form-row align-items-center justify-content-center">
+        <div class="col col-sm-8  align-items-center">
+          <input class="form-control" type="search" name="search" placeholder="Search Words" aria-label="Search">
+        </div>
+        <div class="col col-sm-4">
+          <button class="btn btn-outline-success w-100" type="submit">Search</button>
+        </div>
       </div>
+    </form>
+     
     </div>
     <?php if ($_SESSION['flash']['type'] == 'alert' ) : ?>    <!--  code for flash box -->
         <div class='container'>
@@ -95,16 +100,16 @@
   </div>
 
   <main>
-    <div class="container text-center p-4">
+    <div class="container text-center px-3">
       <p><span class="bigWords">Click on a word to update or delete</span></p>
-    </div>
 
-    <div class="container">
-      <div class="row flex-wrap">
-        <?php foreach ($words as $word) :?>
-          <div class="col-6 col-sm-4 col-md-2 text-center p-1">
-            <?php echo "<a href='edit.php?id=$word->id'>" . $word->word . "</a>"?></div>               
-        <? endforeach ?>
+      <div class="container" id="scrollBox">
+        <div class="row flex-wrap">     
+            <?php foreach ($words as $word) :?>
+              <div class="col-6 col-sm-4 col-md-2 text-center p-1">
+                <?php echo "<a href='edit.php?id=$word->id'>" . $word->word . "</a>"?></div>               
+            <? endforeach ?>
+        </div>
       </div>
     </div>
   </main> 
