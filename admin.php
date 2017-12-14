@@ -5,7 +5,7 @@
 
   $data = array();
   $words = NewWord::open($data);
-
+  $total = 0;
   $_SESSION['SW'] = '';
   
   $searchWord = $_POST['search'];
@@ -17,6 +17,9 @@
         Flash::set_notice('Word is in list!');   
       } 
     }
+  }
+  foreach ( $words as $word ) {
+    $total += 1;
   }
 ?>
 <!DOCTYPE html>
@@ -32,38 +35,41 @@
 <body>
   <header>
     <div class="container">
-        <div class="jumbotron text-center mt-3">
+        <div class="jumbotron py-4 text-center mt-3">
             <h1>High-Frequency Words</h1>
         </div> 
     </div>
     
   </header>
-
-  <div class="container">
-    <nav class="navbar navbar-expand navbar-dark bg-dark justify-content-between">
-      <div class="navbar-brand">Administration</div>
-      <div style="width: 100%"></div>
-      <div class="navbar-collapse collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="index.php">HOME <span class="sr-only"></span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href='new.php'>NEW</a>
-          </li>  
-          <?php if ( $_SESSION['superUser'] == true ) : ?>
+  
+    <div class="container">
+      <nav class="navbar navbar-expand-sm navbar-dark bg-dark justify-content-between">
+        <div class="navbar-brand">Administration</div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div style="width: 100%"></div>   
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href='addUser.php'>USERS</a>
+              <a class="nav-link" href="index.php">HOME <span class="sr-only"></span></a>
             </li>
-          <? endif ?>
-          <li class="nav-item">
-            <a class="nav-link" href='logout.php'>LOGOUT</a>
-          </li>
-        </ul>
-      </div>    
-    </nav>
-  </div>
-
+            <li class="nav-item">
+              <a class="nav-link" href='new.php'>NEW</a>
+            </li>  
+            <?php if ( $_SESSION['superUser'] == true ) : ?>
+              <li class="nav-item">
+                <a class="nav-link" href='addUser.php'>USERS</a>
+              </li>
+            <? endif ?>
+            <li class="nav-item">
+              <a class="nav-link" href='logout.php'>LOGOUT</a>
+            </li>
+          </ul>
+        </div>    
+      </nav>
+    </div>
+  
   <div class="container"> 
     
     <form action="admin.php" method="post">
@@ -100,18 +106,30 @@
   </div>
 
   <main>
-    <div class="container text-center px-3">
-      <p><span class="bigWords">Click on a word to update or delete</span></p>
 
-      <div class="container" id="scrollBox">
-        <div class="row flex-wrap">     
-            <?php foreach ($words as $word) :?>
-              <div class="col-6 col-sm-4 col-md-2 text-center p-1">
-                <?php echo "<a href='edit.php?id=$word->id'>" . $word->word . "</a>"?></div>               
-            <? endforeach ?>
+    <div class="container text-center px-3">
+      <div class="row"> 
+        <div class="col">
+          <p><span class="bigWords">Click on a word to update or delete</span></p>
         </div>
       </div>
+      <div class="row-12"> 
+        <div class="col text-left">
+          <p>number of words: <?php echo $total ?></p> 
+        </div> 
+      </div>
     </div>
+
+    <div class="container" id="scrollBox">
+      <div class="row flex-wrap">     
+        <?php foreach ($words as $word) :?>
+          <div class="col-6 col-sm-4 col-md-2 text-center p-1">
+            <?php echo "<a href='edit.php?id=$word->id'>" . $word->word . "</a>"?>
+          </div>               
+        <? endforeach ?>
+      </div>
+    </div>
+
   </main> 
   <footer>
     <?php if ($_SESSION['flash']['type'] == 'alert' ) : ?>
@@ -133,5 +151,8 @@
           } 
       ?>
   </footer>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 </body> 
 </html>

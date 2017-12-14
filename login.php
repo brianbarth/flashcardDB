@@ -46,26 +46,33 @@
     <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
     <header>
-    <div class="container">
-        <div class="jumbotron text-center mt-3">
-            <h1>High-Frequency Words *LOGIN*</h1>
+        <div class="container">
+            <div class="jumbotron py-4 text-center mt-3">
+                <h1>High-Frequency Words</h1>
+            </div>
         </div> 
-    </div>
-    <div class="container">
-        <div id="nav" class="container well-sm text-right" style="background-color: #e3f2fd;">
-            <a href='index.php'>HOME</a>
+    </header>
+        <div class="container pb-4">
+            <nav class="navbar navbar-expand navbar-dark bg-dark justify-content-between">
+                <div class="navbar-brand">Login</div>
+                <div style="width: 100%"></div>
+                <div class="navbar-collapse collapse" id="navbarNav">
+                    <ul class="navbar-nav"> 
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.php">HOME <span class="sr-only"></span></a>
+                        </li>     
+                    </ul>
+                </div>    
+            </nav>
         </div>
-    </div>
+
         <?php if ( $bad ) : ?>
             <div class="container">
-                <div class="well well-md text-center" style="background-color: #f8d7da;"><p>The Username or password is not correct</p></div>
+                <div class="alert alert-danger text-center" style="background-color: #f8d7da;"><p>The Username or password is not correct</p></div>
             </div>
         <?php endif ?>
-    </header> 
+   
     <main>    
-        <div class="container">
-            <h2>Please Login:</h2>
-        </div>
         <div class="container">
             <form action='login.php' method='post'>
             <div class="form-group">

@@ -26,7 +26,7 @@
 </head>
 <header>
     <div class="container">
-        <div class="jumbotron text-center mt-3">
+        <div class="jumbotron py-4 text-center mt-3">
             <h1>High-Frequency Words</h1>
         </div>
     </div>
@@ -37,6 +37,9 @@
         <div style="width: 100%"></div>
         <div class="navbar-collapse collapse" id="navbarNav">
             <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php">HOME<span class="sr-only"></span></a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="admin.php">ADMIN<span class="sr-only"></span></a>
                 </li>            
@@ -60,14 +63,16 @@
     </div>
     <!-- table of approved users -->
     <div class="container"> 
-        <h2>List of approved users</h2>
+        <h2 id="listWord">List of approved users</h2>
     </div>
     <div class="container">
-        <table class="table table-striped">
-            <tr>
-                <th>User</th>
-                <th>&nbsp;</th>
-            </tr>            
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th>User</th>
+                    <th>&nbsp;</th>
+                </tr>
+            </thead>            
             <?php $user = Users::open($_POST); ?>   <!-- populates user table -->
             <?php foreach ($user as $foo) : ?>
                 <tr>

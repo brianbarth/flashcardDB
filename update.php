@@ -52,31 +52,42 @@
 </head>
 <header>
     <div class="container">
-        <div class="jumbotron text-center mt-3">
-        <h1>Administration *EDIT*</h1>
-        </div>
-    </div>
-    <div class="container">
-        <div id="nav" class="container well-sm text-right" style="background-color: #e3f2fd;">
-            <a href='index.php'>HOME</a>
-        </div>
+        <div class="jumbotron py-4 text-center mt-3">
+            <h1>High-Frequency Words</h1>
+        </div> 
     </div>
 </header> 
+    <div class="container pb-4">
+        <nav class="navbar navbar-expand navbar-dark bg-dark justify-content-between">
+        <div class="navbar-brand">Update Word</div>
+        <div style="width: 100%"></div>
+        <div class="navbar-collapse collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="admin.php">ADMIN</a>
+                </li> 
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php">HOME <span class="sr-only"></span></a>
+                </li>
+            </ul>
+        </div>    
+        </nav>
+    </div>
 <main>
     <div class="container">
-        <h2>Update Word</h2>
-    </div>
-    <div class="container">
         <form action="update.php?id=<?php echo $data->id ?>" method='post'>
-        <?php   if ( isset( $errors['word'])) {
-                        echo "<div class='form-group' id='eb'>";
-                    } else {
-                        echo "<div class='form-group'>";
-                    }
-        ?>
-        <label for="name"><?php echo $name ?></label><input class="form-control" type='text' name='word' id='word' value="<?php echo $word ?>">
-        </div>
-            <button class="btn btn-primary" type='submit'>Update</button>
+            <?php   if ( isset( $errors['word'])) {
+                            echo "<div class='form-group' id='eb'>";
+                        } else {
+                            echo "<div class='form-group'>";
+                        }
+            ?>
+            <label for="name">
+                <?php echo 'selected word: ' . $name ?>
+            </label>
+                <input class="form-control" type='text' name='word' id='word' value="<?php echo $word ?>">
+            </div>
+                <button class="btn btn-primary" type='submit'>Update</button>
         </form>
     </div>
 </main>

@@ -27,7 +27,7 @@
 <body>
     <header>      
         <div class="container">      
-            <div class="jumbotron text-center mt-3">        
+            <div class="jumbotron py-4 text-center mt-3">        
                 <div class="row">
                     <div class="col">
                         <h1>High-Frequency Words</h1>
@@ -62,10 +62,11 @@
         </div>    
         </nav>
     </div>
-
-    <div class="mainContainer">
-        <div class="backgroundImage">
-            <p id="sightWord"><?php echo $word ?></p>
+    <div class="container">
+        <div class="mainContainer">
+            <div class="backgroundImage">
+                <p id="sightWord"><?php echo $word ?></p>
+            </div>
         </div>
     </div>
 
