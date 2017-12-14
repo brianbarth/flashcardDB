@@ -27,7 +27,7 @@
                     $_SESSION['loggedin'] = true;
                     $_SESSION['user'] = $_POST['username'];
                
-                    Flash::set_notice( 'You are now logged in!');
+                    Flash::set_notice( 'Hello ' . $_POST['username'] . ', You are now logged in!');
                     header('location:admin.php');
                     exit;
                 }

@@ -50,22 +50,22 @@
             </div>
         </div> 
     </header>
-    <div class="container">
-    <nav class="navbar navbar-expand navbar-dark bg-dark justify-content-between">
-      <div class="navbar-brand">New Word</div>
-      <div style="width: 100%"></div>
-      <div class="navbar-collapse collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="admin.php">ADMIN</a>
-            </li> 
-          <li class="nav-item">
-            <a class="nav-link" href="index.php">HOME <span class="sr-only"></span></a>
-          </li>     
-        </ul>
-      </div>    
-    </nav>
-  </div> 
+        <div class="container">
+            <nav class="navbar navbar-expand navbar-dark bg-dark justify-content-between">
+                <div class="navbar-brand">New Word</div>
+                <div style="width: 100%"></div>
+                <div class="navbar-collapse collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="admin.php">ADMIN</a>
+                        </li> 
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.php">HOME <span class="sr-only"></span></a>
+                        </li>     
+                    </ul>
+                </div>    
+            </nav>
+        </div> 
     <main>
         <div class="container">
             <form class="padding" action='new.php' method='post'>

@@ -25,13 +25,13 @@
     <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 <header>
-    <div class="container">
+    <div class="container d-none d-sm-block">
         <div class="jumbotron py-4 text-center mt-3">
             <h1>High-Frequency Words</h1>
         </div>
     </div>
 </header>
-<div class="container">
+<div class="container py-2 py-sm-0">
     <nav class="navbar navbar-expand navbar-dark bg-dark justify-content-between">
         <div class="navbar-brand">Add User</div>
         <div style="width: 100%"></div>

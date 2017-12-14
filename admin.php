@@ -11,10 +11,10 @@
   $searchWord = $_POST['search'];
 
   if ( isset($searchWord) ) {
-        Flash::set_alert('Word is not in list!');
+        Flash::set_alert('Word is not in database!');
     foreach ( $words as $word ) {
       if ( $word->word == $searchWord ) {
-        Flash::set_notice('Word is in list!');   
+        Flash::set_notice('Word is in database!');   
       } 
     }
   }
@@ -34,7 +34,7 @@
 </head>
 <body>
   <header>
-    <div class="container">
+    <div class="container d-none d-sm-block">
         <div class="jumbotron py-4 text-center mt-3">
             <h1>High-Frequency Words</h1>
         </div> 
@@ -42,7 +42,7 @@
     
   </header>
   
-    <div class="container">
+    <div class="container py-2 py-sm-0">
       <nav class="navbar navbar-expand-sm navbar-dark bg-dark justify-content-between">
         <div class="navbar-brand">Administration</div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -115,15 +115,15 @@
       </div>
       <div class="row-12"> 
         <div class="col text-left">
-          <p>number of words: <?php echo $total ?></p> 
+          <p>Total words: <?php echo $total ?></p> 
         </div> 
       </div>
     </div>
 
-    <div class="container" id="scrollBox">
-      <div class="row flex-wrap">     
+    <div class="container w-75" id="scrollBox">
+      <div class="row no-gutters flex-wrap py-5">     
         <?php foreach ($words as $word) :?>
-          <div class="col-6 col-sm-4 col-md-2 text-center p-1">
+          <div class="col-6 col-sm-4 col-md-2 text-center py-1">
             <?php echo "<a href='edit.php?id=$word->id'>" . $word->word . "</a>"?>
           </div>               
         <? endforeach ?>

@@ -71,7 +71,7 @@ a {
     font-style: bold;
 }
 #scrollBox {
-    border: 1px solid gray;
+    border: 2px solid #e9ecef;
     overflow: scroll;
     height: 400px;
 }
@@ -88,6 +88,9 @@ a {
     .bigWords {
         font-size: 1.5rem;
     }
+    button {
+        width: 50%;
+    }
 }
 @media only screen and (max-width: 478px) {
     .bigWords {
@@ -98,6 +101,18 @@ a {
     h1 {
         font-size: 2rem;
     }
+    .mainContainer {
+        height: 240px;
+        width: 80%;
+    }
+    #sightWord {
+        margin-top: -30px;
+        font-size: 3em;
+    }
+    button {
+        width: 75%;
+    }
+    
 }
 @media only screen and (max-width: 380px) {
     #listWord {
