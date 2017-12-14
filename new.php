@@ -2,25 +2,31 @@
     session_start();
     require('lib/NewWord.php');
     require('lib/Flash.php');
-
-    $errors = array();
     $data = array();
+    $errors = array();
+    $data = NewWord::open($data);
+    $test = true;
+
+    foreach ( $data as $word ) {   // checks for repeated entries before submitting
+        if ( $_POST['word'] == $word->word ) {
+            $test = false;
+            $_POST['word'] = '__';
+        }
+    }
     
     if( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
       
         //validation
         $errors = NewWord::validate($_POST); //object call for validation
         
-        if (count($errors) == 0) {
+        if ( (count($errors)) == 0 && ($test == true) ) {
 
             Flash::set_notice("New word added!"); 
-          
-            $data = NewWord::open($data); //open and loads book data 
-             
-            NewWord::append( $data ); //object call to append new data to file
+              
+            NewWord::append(); //object call to append new data to file
 
         } else {
-            echo "<div class='container'>";
+            echo "<div class='container my-2'>";
             echo "<div class='alert alert-danger text-center' role='alert' style='background-color:#f8d7da;'>";
             foreach ( $errors as $mssg ) {
                 echo $mssg . "</br>";
@@ -43,6 +49,7 @@
     <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 <body>
+<!-- jumbotron container -->
     <header>
         <div class="container">
             <div class="jumbotron py-4 text-center mt-3">
@@ -50,6 +57,7 @@
             </div>
         </div> 
     </header>
+<!-- navigation -->
         <div class="container">
             <nav class="navbar navbar-expand navbar-dark bg-dark justify-content-between">
                 <div class="navbar-brand">New Word</div>
@@ -67,6 +75,7 @@
             </nav>
         </div> 
     <main>
+<!-- FORM for adding new word -->
         <div class="container">
             <form class="padding" action='new.php' method='post'>
             <?php   if ( isset( $errors['name'])) {
@@ -75,7 +84,14 @@
                         echo "<div class='form-group'>";
                     }      
             ?>
-            <label for="name">ADD WORD</label><input class="form-control" type='text' name='word' id='word' value="<?php echo $_POST['word'] ?>">
+            <label for="name">ADD WORD</label>
+
+            <?php if ( count($errors) == 0 ) : ?>
+                <input class="form-control" type='text' name='word' id='word' value=''>
+            <?php else : ?>
+                <input class="form-control border border-danger" type='text' name='word' id='word' value=''>
+            <?php endif ?>
+
             </div>
             <?php   if ( isset( $errors['description'])) {
                         echo "<div class='form-group' id='eb'>";
@@ -86,6 +102,7 @@
                 <button class="btn btn-primary" type='submit'>Add</button> 
             </form>
         </div>
+
     </main> 
     <footer> 
     </footer>

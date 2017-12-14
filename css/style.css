@@ -61,7 +61,6 @@ a {
 }
 .bigWords {
     font-size: 2rem;
-    text-decoration: underline;
 }
 .padding {
     margin-top: 2rem;
@@ -73,11 +72,11 @@ a {
 #scrollBox {
     border: 2px solid #e9ecef;
     overflow: scroll;
-    height: 400px;
+    height: 460px;
 }
-@media only screen and (max-height: 925px ) {
+@media only screen and (max-height: 825px ) {
      #scrollBox {
-        height: 200px;
+        height: 240px;
         overflow: scroll;
     } 
     .bigWords {

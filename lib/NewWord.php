@@ -69,14 +69,17 @@
         $errors = array();
         
         if (empty($data['word'])) {
-            $errors['word'] = "Word cannot be left blank!";
+            $errors['word'] = "Word cannot be left blank!";    
+        }
+        if ( $data['word'] == '__' ) {
+            $errors['word'] = "Word already in database!". "<br/>" . "Change entry or navigate away from page!";
         }
         
         return $errors;
 
     }   //end of validate()
 
-    public function append( $data ) {   //function for new Word creation
+    public function append() {   //function for new Word creation
         self::init_db();
 
         $stment = self::$db->prepare( 'insert into words (word) values (:word)' ); // framework for sql statement

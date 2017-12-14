@@ -8,17 +8,41 @@
   $total = 0;
   $_SESSION['SW'] = '';
   
-  $searchWord = $_POST['search'];
+  $searchWord = $_POST['word'];
 
-  if ( isset($searchWord) ) {
-        Flash::set_alert('Word is not in database!');
+  if( $_SERVER['REQUEST_METHOD'] === 'POST' ) {    //sets validation pass or populates error box at top of page
+    
+      //validation
+      $errors = NewWord::validate($_POST); //object call for validation
+      
+      if ( count($errors) == 0 ) {
+
+          Flash::set_notice("New word added!"); 
+       
+      } else {
+          echo "<div class='container my-2'>";
+          echo "<div class='alert alert-danger text-center' role='alert' style='background-color:#f8d7da;'>";
+          foreach ( $errors as $mssg ) {
+              echo $mssg . "</br>";
+          }
+          echo "</div>";
+          echo "</div>";
+          
+      } //end of loop that prints $errors array
+  } // end of $_POST control statement
+
+  if ( isset($searchWord) ) {      //message box below search form
+    if ( $searchWord != '' ) {
+      Flash::set_alert( $searchWord . ' is not in database!');
+    }
     foreach ( $words as $word ) {
       if ( $word->word == $searchWord ) {
-        Flash::set_notice('Word is in database!');   
+        Flash::set_notice( $searchWord . ' is in database!');   
       } 
     }
   }
-  foreach ( $words as $word ) {
+
+  foreach ( $words as $word ) {  // generates the number of items in database
     $total += 1;
   }
 ?>
@@ -71,19 +95,23 @@
     </div>
   
   <div class="container"> 
-    
-    <form action="admin.php" method="post">
+<!-- search FORM -->
+    <form action="admin.php" method="post">      
       <div class="form-row align-items-center justify-content-center">
         <div class="col col-sm-8  align-items-center">
-          <input class="form-control" type="search" name="search" placeholder="Search Words" aria-label="Search">
+        <?php if ( count($errors) == 0 ) : ?>
+          <input class="form-control" type="search" name="word" placeholder="Search Words" aria-label="Search">
+        <?php else : ?>
+          <input class="form-control border border-danger" type="search" name="word" placeholder="Search Words" aria-label="Search">
+        <?php endif ?>
         </div>
         <div class="col col-sm-4">
           <button class="btn btn-outline-success w-100" type="submit">Search</button>
         </div>
       </div>
-    </form>
-     
+    </form>  
     </div>
+<!--  code for flash box -->
     <?php if ($_SESSION['flash']['type'] == 'alert' ) : ?>    <!--  code for flash box -->
         <div class='container'>
         <div class='alert alert-danger text-center'role='alert'>
@@ -102,13 +130,11 @@
               echo '</div>';
           } 
       ?>
-   
-  </div>
-
+      </div>
   <main>
 
-    <div class="container text-center px-3">
-      <div class="row"> 
+    <div class="container text-center">
+      <div class="row  alert alert-info d-inline-block"> 
         <div class="col">
           <p><span class="bigWords">Click on a word to update or delete</span></p>
         </div>
