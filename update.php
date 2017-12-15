@@ -108,5 +108,12 @@
     </div>
 </main>
 <footer>
-</footer> 
+<div class='container-fluid mt-4 pt-6 bg-light text-dark fixed-bottom'>
+    <div class='row justify-content-center'> 
+      <div class'col'> 
+        <p>Copyright &copy 2017 Brian Barth</p> 
+      </div> 
+    </div> 
+  </div>
+</footer>
 </html>

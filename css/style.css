@@ -1,52 +1,23 @@
 /* stylesheet for FlashCard program */
 
 
-.mainContainer {
-    width: 75%;
-    margin: auto;
-    background-color: black;
-    height: 500px;
-    border-radius: 7px;
-    box-shadow: #6D7575 3px 3px 3px;
-}
-.backgroundImage {  
-    display: inline-block;
-    width: 100%;
-    margin: auto;
-    padding: 0 20px 20px 20px;
-}
 #sightWord {
-    margin-top: 100px;
     background-image: url("../assets/indexCard.jpg"); 
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
+    background-size: auto;
     text-align: center;
-    line-height: 300px;
-    font-family: 'ABeeZee', sans-serif;
-    text-shadow: #6D7575 4px 4px 4px; 
-    font-size: 5em;
-}
-#button {
-    width: 90%;
-    margin: auto;
-    
-}
-#button2 {
-    width: 90%;
-    margin: auto;
-    
-}
-button {
-    display: block;
-    font-size: 20px;
-    width: 25%;
-    margin: 20px auto;
-    text-align: center;
-    border-radius: 10px;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
+    line-height: 150px;
+    font-family: 'Didact Gothic', sans-serif;
+    text-shadow: #6D7575 2px 2px 2px; 
+    font-size: 5rem;
+    padding: 0 50px;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    border-left: 1px solid lightgray;
+    border-top: 1px solid lightgray;
+    box-shadow: 2px 2px 2px rgb(155, 152, 152);
 }
 a {
     padding-right: 20px;
@@ -74,6 +45,13 @@ a {
     overflow: scroll;
     height: 460px;
 }
+/* height adjustments for admin list */
+@media only screen and (max-height: 968px ) {
+    #scrollBox {
+       height: 340px;
+       overflow: scroll;
+   } 
+}
 @media only screen and (max-height: 825px ) {
      #scrollBox {
         height: 240px;
@@ -83,12 +61,15 @@ a {
         font-size: 16px;
     }
 }
+@media only screen and (max-height: 684px ) {
+    #scrollBox {
+       height: 240px;
+       overflow: scroll;
+   } 
+}
 @media only screen and (max-width: 767px ) {
     .bigWords {
         font-size: 1.5rem;
-    }
-    button {
-        width: 50%;
     }
 }
 @media only screen and (max-width: 478px) {
@@ -100,22 +81,10 @@ a {
     h1 {
         font-size: 2rem;
     }
-    .mainContainer {
-        height: 240px;
-        width: 80%;
-    }
     #sightWord {
-        margin-top: -30px;
         font-size: 3em;
-    }
-    button {
-        width: 75%;
-    }
-    
-}
-@media only screen and (max-width: 380px) {
-    #listWord {
-        font-size: 1.5rem;
-        text-align: center;
+        padding: 0 50px;
+        line-height: 120px;
     }
 }
+

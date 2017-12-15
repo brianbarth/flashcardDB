@@ -46,12 +46,14 @@
     <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
     <header>
+<!-- Jumbotron -->
         <div class="container">
             <div class="jumbotron py-4 text-center mt-3">
                 <h1>High-Frequency Words</h1>
             </div>
         </div> 
     </header>
+<!-- navbar -->
         <div class="container pb-4">
             <nav class="navbar navbar-expand navbar-dark bg-dark justify-content-between">
                 <div class="navbar-brand">Login</div>
@@ -65,7 +67,7 @@
                 </div>    
             </nav>
         </div>
-
+<!-- login error message -->
         <?php if ( $bad ) : ?>
             <div class="container">
                 <div class="alert alert-danger text-center" style="background-color: #f8d7da;"><p>The Username or password is not correct</p></div>
@@ -88,23 +90,12 @@
         </div>       
     </main> 
     <footer>
-        <?php if ($_SESSION['flash']['type'] == 'alert' ) : ?>
-            <div class='container'>
-            <div class='alert alert-danger text-center'role='alert'>
-        <?php endif ?>
-        <?php if ($_SESSION['flash']['type'] == 'notice' ) : ?>
-            <div class='container'>
-            <div class='alert alert-success text-center' role='alert'> 
-        <?php endif ?>
-        <?php
-            if (isset($_SESSION['flash'])) {             
-                echo '<div class="flash' . $_SESSION['flash']['type'] . '">';
-                echo '<p>' . $_SESSION['flash']['message'] . '</p>';
-                echo '</div';
-                unset($_SESSION['flash']);
-            } 
-        ?>
-        </div>
-        </div>
-    </footer> 
+    <div class='container-fluid mt-4 pt-6 bg-light text-dark fixed-bottom'>
+        <div class='row justify-content-center'> 
+          <div class'col'> 
+            <p>Copyright &copy 2017 Brian Barth</p> 
+          </div> 
+        </div> 
+      </div>
+  </footer>
 </html>

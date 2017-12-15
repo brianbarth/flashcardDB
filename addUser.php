@@ -25,13 +25,15 @@
     <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 <header>
+<!-- Jumbotron -->
     <div class="container d-none d-sm-block">
         <div class="jumbotron py-4 text-center mt-3">
             <h1>High-Frequency Words</h1>
         </div>
     </div>
 </header>
-<div class="container py-2 py-sm-0">
+<!-- navigation -->
+<div class="container pt-2 py-sm-2">
     <nav class="navbar navbar-expand navbar-dark bg-dark justify-content-between">
         <div class="navbar-brand">Add User</div>
         <div style="width: 100%"></div>
@@ -47,6 +49,26 @@
         </div>    
     </nav>
 </div>
+<!-- error box -->
+    <?php if ($_SESSION['flash']['type'] == 'alert' ) : ?>
+        <div class='container pt-2'>
+        <div class='alert alert-danger text-center'role='alert'>
+    <?php endif ?>
+    <?php if ($_SESSION['flash']['type'] == 'notice' ) : ?>
+        <div class='container pt-2'>
+        <div class='alert alert-success text-center' role='alert'> 
+    <?php endif ?>
+        <?php
+            if (isset($_SESSION['flash'])) {             
+                echo '<div class="flash' . $_SESSION['flash']['type'] . '">';
+                echo '<p>' . $_SESSION['flash']['message'] . '</p>';
+                echo '</div';
+                unset($_SESSION['flash']);
+            } 
+        ?>
+        </div>
+        </div>
+<!-- FORM username/password input -->
 <main> 
     <div class="container">
         <form class="padding" action="addUser.php" method="post">
@@ -61,11 +83,11 @@
                 <button  class="btn btn-primary" type="submit">Add</button>        
         </form>
     </div>
-    <!-- table of approved users -->
+<!-- table of approved users -->
     <div class="container"> 
         <h2 id="listWord">List of approved users</h2>
     </div>
-    <div class="container">
+    <div class="container pb-4">
         <table class="table">
             <thead class="thead-light">
                 <tr>
@@ -84,23 +106,12 @@
     </div>
 </main>
 <footer>
-    <?php if ($_SESSION['flash']['type'] == 'alert' ) : ?>
-        <div class='container'>
-        <div class='alert alert-danger text-center'role='alert'>
-    <?php endif ?>
-    <?php if ($_SESSION['flash']['type'] == 'notice' ) : ?>
-        <div class='container'>
-        <div class='alert alert-success text-center' role='alert'> 
-    <?php endif ?>
-        <?php
-            if (isset($_SESSION['flash'])) {             
-                echo '<div class="flash' . $_SESSION['flash']['type'] . '">';
-                echo '<p>' . $_SESSION['flash']['message'] . '</p>';
-                echo '</div';
-                unset($_SESSION['flash']);
-            } 
-        ?>
-        </div>
-        </div>
+<div class='container-fluid mt-4 pt-6 bg-light text-dark fixed-bottom'>
+    <div class='row justify-content-center'> 
+      <div class'col'> 
+        <p>Copyright &copy 2017 Brian Barth</p> 
+      </div> 
+    </div> 
+  </div>
 </footer>
 </html>
