@@ -64,7 +64,7 @@
           <p id="editWord">Selected Word: <span class="spanWords"><?php echo $hotWord->word; ?></p></span> 
         </div> 
       </div>
-      <div class="row">
+      <div class="row pb-3">
         <div class="col text-center">
           <a href="update.php?id=<?php echo $hotID ?>"><button type="button" class="btn btn-primary">Update</button></a>
         </div>
@@ -76,6 +76,7 @@
       </div> 
     </div> 
   </main>
+
   <footer>
   <div class='container-fluid mt-4 pt-6 bg-light text-dark fixed-bottom'>
       <div class='row justify-content-center'> 

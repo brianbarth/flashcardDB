@@ -84,7 +84,7 @@
         </form>
     </div>
 <!-- table of approved users -->
-    <div class="container"> 
+    <div class="container mt-2"> 
         <h2 id="listWord">List of approved users</h2>
     </div>
     <div class="container pb-4">

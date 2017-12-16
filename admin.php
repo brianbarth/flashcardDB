@@ -122,12 +122,9 @@
     <?php endif ?>
       <?php
           if (isset($_SESSION['flash'])) {             
-              echo '<div class="flash' . $_SESSION['flash']['type'] . '">';
               echo '<p>' . $_SESSION['flash']['message'] . '</p>';
               echo '</div';
-              unset($_SESSION['flash']);
-              echo '</div>';
-              echo '</div>';
+              echo '</div>';      
           } 
       ?>
       </div>
@@ -146,8 +143,8 @@
       </div>
     </div>
 <!-- scroll box -->
-    <div class="container w-75" id="scrollBox" <?php if ( isset($searchWord) ) { echo 'style="height: 240px"'; } ?>>
-      <div class="row no-gutters flex-wrap py-5">     
+    <div class="container w-75" id="scrollBox" <?php if ( isset($searchWord) || isset($_SESSION['flash'] ) ) { echo 'style="height: 240px"'; unset($_SESSION['flash']); } ?>>
+      <div class="row no-gutters flex-wrap py-3">     
         <?php foreach ($words as $word) :?>
           <div class="col-6 col-sm-4 col-md-2 text-center py-1">
             <?php echo "<a href='edit.php?id=$word->id'>" . $word->word . "</a>"?>

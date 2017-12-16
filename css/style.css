@@ -63,7 +63,7 @@ a {
 }
 @media only screen and (max-height: 684px ) {
     #scrollBox {
-       height: 240px;
+       height: 340px;
        overflow: scroll;
    } 
 }
