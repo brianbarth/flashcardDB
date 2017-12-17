@@ -4,11 +4,13 @@
   require('lib/NewWord.php');
 
   $data = array();
+  $data2 = array();
   $words = NewWord::open($data);
   $total = 0;
   $_SESSION['SW'] = '';
-  
   $searchWord = $_POST['word'];
+
+  $sorted = NewWord::alphabetize($data2);
 
   if( $_SERVER['REQUEST_METHOD'] === 'POST' ) {    //sets validation pass or populates error box at top of page
     
@@ -37,7 +39,7 @@
     }
     foreach ( $words as $word ) {
       if ( $word->word == $searchWord ) {
-        Flash::set_notice( $searchWord . ' is in database!');   
+        Flash::set_notice( ucfirst($searchWord) . ' is in database!' . '<br/>' . 'Scroll to find ' . $searchWord . '!');   
       } 
     }
   }
@@ -100,7 +102,7 @@
       <div class="form-row align-items-center justify-content-center">
         <div class="col col-sm-8  align-items-center">
         <?php if ( count($errors) == 0 ) : ?>
-          <input class="form-control" type="search" name="word" placeholder="Search Words" aria-label="Search">
+          <input class="form-control" type="search" name="word" placeholder="Search Words" value='<?php echo $searchWord ?>' aria-label="Search">
         <?php else : ?>
           <input class="form-control border border-danger" type="search" name="word" placeholder="Search Words" aria-label="Search">
         <?php endif ?>
@@ -143,11 +145,15 @@
       </div>
     </div>
 <!-- scroll box -->
-    <div class="container w-75" id="scrollBox" <?php if ( isset($searchWord) || isset($_SESSION['flash'] ) ) { echo 'style="height: 240px"'; unset($_SESSION['flash']); } ?>>
-      <div class="row no-gutters flex-wrap py-3">     
-        <?php foreach ($words as $word) :?>
-          <div class="col-6 col-sm-4 col-md-2 text-center py-1">
-            <?php echo "<a href='edit.php?id=$word->id'>" . $word->word . "</a>"?>
+    <div class="container w-75" id="scrollBox"  <?php  if ( isset($searchWord) || isset($_SESSION['flash'] ) ) { 
+                                                          echo 'style="height: 220px"'; 
+                                                          unset($_SESSION['flash']); }                                      
+                                                ?>>
+      <div class="row no-gutters flex-wrap py-3">
+        <!-- <?php  ?>      -->
+        <?php foreach ( $sorted as $word ) :?>
+          <div class="col-6 col-sm-4 col-md-2 text-center py-1" <?php if ( $word->word == $searchWord ) { echo 'style="background-color:#d4edda"';} ?>>
+            <?php  echo "<a href='edit.php?id=$word->id'>" . $word->word . "</a>"?>
           </div>               
         <? endforeach ?>
       </div>

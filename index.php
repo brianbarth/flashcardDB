@@ -79,7 +79,7 @@
             </div>
         </div>
         <div class='row justify-content-center'>
-            <div class='col-6 col-sm-4'>
+            <div class='col-6 col-sm-4 pb-4'>
                 <button class="btn btn-primary w-100 mb-4" id='button2' type="button">SAY WORD</button>
             </div>
         </div>

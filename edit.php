@@ -61,17 +61,17 @@
     <div class="container">
       <div class="row"> 
         <div class="col text-center">
-          <p id="editWord">Selected Word: <span class="spanWords"><?php echo $hotWord->word; ?></p></span> 
+          <p id="editWord">Selected Word: <span class="spanWords"><?php echo '<br/>' . $hotWord->word; ?></p></span> 
         </div> 
       </div>
       <div class="row pb-3">
-        <div class="col text-center">
-          <a href="update.php?id=<?php echo $hotID ?>"><button type="button" class="btn btn-primary">Update</button></a>
+        <div class="col text-center center-block">
+          <a href="update.php?id=<?php echo $hotID ?>"><button type="button" class="btn btn-primary center-block">Update</button></a>
         </div>
       </div>
       <div class="row"> 
-        <div class="col text-center"> 
-          <a href="delete.php?id=<?php echo $hotID ?>"><button type="button" class="btn btn-danger">Delete</button></a>
+        <div class="col text-center center-block"> 
+          <a href="delete.php?id=<?php echo $hotID ?>"><button type="button" class="btn btn-danger center-block">Delete</button></a>
         </div>
       </div> 
     </div> 

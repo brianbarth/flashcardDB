@@ -27,7 +27,6 @@
            
             $wordValue = new NewWord(array( 'id'=>$record[0], 'word'=>$record[1] ));
 
-            // $data[$wordValue->id] = $wordValue;
             array_push($data, $wordValue);
         }                      
 
@@ -91,5 +90,22 @@
 
     }  //end of append function
 
+    public function alphabetize($data2) {
+        self::init_db();
+
+        $sorted = array();
+        
+        $result = self::$db->query('SELECT * FROM words ORDER BY word'); 
+    
+        while ( $record = $result->fetch() ) {
+           
+            $wordValue = new NewWord(array( 'id'=>$record[0], 'word'=>$record[1] ));
+
+            array_push($sorted, $wordValue);
+        } 
+        return $sorted;
+    } // end of alphabetize() function                     
+
  } // end of NewProduct class
+
 ?>
