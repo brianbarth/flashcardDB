@@ -12,30 +12,9 @@
 
   $sorted = NewWord::alphabetize($data2);
 
-  if( $_SERVER['REQUEST_METHOD'] === 'POST' ) {    //sets validation pass or populates error box at top of page
-    
-      //validation
-      $errors = NewWord::validate($_POST); //object call for validation
-      
-      if ( count($errors) == 0 ) {
-
-          Flash::set_notice("New word added!"); 
-       
-      } else {
-          echo "<div class='container my-2'>";
-          echo "<div class='alert alert-danger text-center' role='alert' style='background-color:#f8d7da;'>";
-          foreach ( $errors as $mssg ) {
-              echo $mssg . "</br>";
-          }
-          echo "</div>";
-          echo "</div>";
-          
-      } //end of loop that prints $errors array
-  } // end of $_POST control statement
-
   if ( isset($searchWord) ) {      //message box below search form
     if ( $searchWord != '' ) {
-      Flash::set_alert( $searchWord . ' is not in database!');
+      Flash::set_alert( ucfirst($searchWord) . ' is not in database!');
     }
     foreach ( $words as $word ) {
       if ( $word->word == $searchWord ) {
@@ -126,33 +105,36 @@
           if (isset($_SESSION['flash'])) {             
               echo '<p>' . $_SESSION['flash']['message'] . '</p>';
               echo '</div';
-              echo '</div>';      
+              echo '</div>';
+              // unset($_SESSION['flash']);
           } 
       ?>
       </div>
   <main>
   <!-- cue and total words -->
-    <div class="container text-center">
-      <div class="row  alert alert-info d-inline-block"> 
-        <div class="col">
-          <p><span class="bigWords">Click on a word to update or delete</span></p>
+    <?php if ( ! isset($_SESSION['flash']) ) : ?>  <!-- click on word message dissapears w/flash set -->
+      <div class="container text-center">
+        <div class="row  alert alert-info d-inline-block"> 
+          <div class="col">
+            <p><span class="bigWords">Click on a word to update or delete</span></p>
+          </div>
         </div>
       </div>
-      <div class="row-12"> 
-        <div class="col text-left">
-          <p>Total words: <?php echo $total ?></p> 
-        </div> 
+    <?php endif ?>
+    <?php unset($_SESSION['flash']); ?>
+
+      <div class="container text-center"> 
+        <div class="row-12"> 
+          <div class="col text-center text-sm-left">
+            <p>Total words in database: <?php echo $total ?></p> 
+          </div> 
+        </div>
       </div>
-    </div>
 <!-- scroll box -->
-    <div class="container w-75" id="scrollBox"  <?php  if ( isset($searchWord) || isset($_SESSION['flash'] ) ) { 
-                                                          echo 'style="height: 220px"'; 
-                                                          unset($_SESSION['flash']); }                                      
-                                                ?>>
+    <div class="container" id="scrollBox">
       <div class="row no-gutters flex-wrap py-3">
-        <!-- <?php  ?>      -->
         <?php foreach ( $sorted as $word ) :?>
-          <div class="col-6 col-sm-4 col-md-2 text-center py-1" <?php if ( $word->word == $searchWord ) { echo 'style="background-color:#d4edda"';} ?>>
+          <div class="col-6 col-sm-4 col-md-2 text-center py-1" <?php if ( $word->word == $searchWord || $_GET['id'] == $word->id ) { echo 'style="background-color:#d4edda"';} ?>>
             <?php  echo "<a href='edit.php?id=$word->id'>" . $word->word . "</a>"?>
           </div>               
         <? endforeach ?>

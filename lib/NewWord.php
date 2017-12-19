@@ -21,7 +21,7 @@
     public function open($data) {
         self::init_db();
 
-        $result = self::$db->query('select * from words'); 
+        $result = self::$db->query('SELECT * FROM words'); 
     
         while ( $record = $result->fetch() ) {
            
@@ -36,7 +36,7 @@
     public function remove( $hotID ) {   
         self::init_db();
 
-        $stment = self::$db->prepare('delete from words where id=:id' );
+        $stment = self::$db->prepare('DELETE FROM words WHERE id=:id' );
         $stment->execute( array('id' => $hotID ) );
         
         header ('location:admin.php');
@@ -49,7 +49,7 @@
            
         self::init_db();
         
-        $stment = self::$db->prepare( 'update words set word=:word where id=:id' );
+        $stment = self::$db->prepare( 'UPDATE words SET word=:word WHERE id=:id' );
         $stment->execute( array( 'id' => $this->id, 'word' => $this->word ) );
 
     } // end of update()
@@ -81,7 +81,7 @@
     public function append() {   //function for new Word creation
         self::init_db();
 
-        $stment = self::$db->prepare( 'insert into words (word) values (:word)' ); // framework for sql statement
+        $stment = self::$db->prepare( 'INSERT INTO words (word) VALUES (:word)' ); // framework for sql statement
         $stment->execute( array( 'word' => $_POST['word'] ) );
         $lastID = self::$db->lastInsertId();
 

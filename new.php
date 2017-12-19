@@ -20,8 +20,8 @@
         $errors = NewWord::validate($_POST); //object call for validation
         
         if ( (count($errors)) == 0 && ($test == true) ) {
-
-            Flash::set_notice("New word added!"); 
+            
+            Flash::set_notice('Wod successfully added!' . '<br/>' . 'Scroll to find!'); 
               
             NewWord::append(); //object call to append new data to file
 
@@ -93,12 +93,7 @@
             <?php endif ?>
 
             </div>
-            <?php   if ( isset( $errors['description'])) {
-                        echo "<div class='form-group' id='eb'>";
-                } else {
-                    echo "<div class='form-group'>";
-                }      
-            ?>
+           
                 <button class="btn btn-primary" type='submit'>Add</button> 
             </form>
         </div>

@@ -68,7 +68,7 @@
     <div class='container bg-light'>
         <div class='row'>
             <div class='col mh-75 m-auto'>
-                <div class="d-flex align-items-center justify-content-center mt-4">
+                <div class="d-flex justify-content-center mt-4">
                     <p id="sightWord"><?php echo $word ?></p>
                 </div>
             </div>

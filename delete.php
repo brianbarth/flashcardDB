@@ -13,7 +13,6 @@
     } else {
         Flash::set_notice("The word was deleted!");
     }
-    $info = NewWord::open($words); // opens product data (no particular reason)
-      
+          
     NewWord::remove($hotID);  // removes the product from the database by using the $_GET['id']
 ?>

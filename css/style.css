@@ -12,7 +12,7 @@
     font-family: 'Didact Gothic', sans-serif;
     text-shadow: #6D7575 2px 2px 2px; 
     font-size: 5rem;
-    padding: 0 50px;
+    padding: 0 50px 10px 50px;
     border-right: 1px solid black;
     border-bottom: 1px solid black;
     border-left: 1px solid lightgray;
@@ -40,31 +40,30 @@
 #scrollBox {
     border: 2px solid #e9ecef;
     overflow: scroll;
-    height: 460px;
+    height: 650px;
 }
-/* height adjustments for admin list */
-@media only screen and (max-height: 968px ) {
+
+@media only screen and (max-height: 1024px ) {
     #scrollBox {
-       height: 340px;
-       overflow: scroll;
+       height: 520px;
    } 
 }
-@media only screen and (max-height: 825px ) {
-     #scrollBox {
-        height: 240px;
-        overflow: scroll;
-    } 
-    .bigWords {
-        font-size: 16px;
-    }
+@media only screen and (max-height: 812px ) {
+    #scrollBox {
+       height: 455px;
+   } 
+}
+@media only screen and (max-height: 736px ) {
+    #scrollBox {
+       height: 380px;
+   } 
 }
 @media only screen and (max-height: 684px ) {
     #scrollBox {
-       height: 340px;
-       overflow: scroll;
+       height: 300px;
    } 
 }
-@media only screen and (max-width: 767px ) {
+@media only screen and (max-width: 736px ) {
     .bigWords {
         font-size: 1.5rem;
     }
@@ -84,4 +83,5 @@
         line-height: 120px;
     }
 }
+
 
