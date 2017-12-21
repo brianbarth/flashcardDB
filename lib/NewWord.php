@@ -3,11 +3,27 @@
  class NewWord {
 
     private static $db = null;
+    private static $dbopts = null;
+
 
     private static function init_db() {
         if ( self::$db == null ) {
-            self::$db = new PDO( "mysql:host=localhost:3306;dbname=flashcard","Brian","Depeche" );
-            self::$db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION ); 
+            // self::$db = new PDO( "mysql:host=localhost:3306;dbname=flashcard","Brian","Depeche" );   ********code to use locally
+            // self::$db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );                    ********code to use locally
+            self::$dbopts = parse_url(getenv('DATABASE_URL'));
+            self::$db->register(new Csanquer\Silex\PdoServiceProvider\Provider\PDOServiceProvider('pdo'),
+               array(
+                'pdo.server' => array(
+                   'driver'   => 'pgsql',
+                   'user' => $dbopts["user"],
+                   'password' => $dbopts["pass"],
+                   'host' => $dbopts["host"],
+                   'port' => $dbopts["port"],
+                   'dbname' => ltrim($dbopts["path"],'/')
+                   )
+               )
+            );
+            
         }
     } // end of init_db()
 
@@ -56,7 +72,7 @@
 
     public function find( $hotID ) {
         self::init_db();
-        $result = self::$db->query("select * from words where id=$hotID");
+        $result = self::$db->query("SELECT * FROM words WHERE id=$hotID");
         $record = $result->fetch();
         $data = new NewWord(array( 'id'=>$record[0], 'word'=>$record[1] ));
        
