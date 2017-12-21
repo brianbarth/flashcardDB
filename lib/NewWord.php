@@ -10,7 +10,7 @@
         if ( self::$db == null ) {
             // self::$db = new PDO( "mysql:host=localhost:3306;dbname=flashcard","Brian","Depeche" );   ********code to use locally
             // self::$db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );                    ********code to use locally
-            self::$dbopts = parse_url(getenv('DATABASE_URL'));
+            self::$dbopts = parse_url(getenv('CLEARDB_DATABASE_URL'));
             self::$db->register(new Csanquer\Silex\PdoServiceProvider\Provider\PDOServiceProvider('pdo'),
                array(
                 'pdo.server' => array(
