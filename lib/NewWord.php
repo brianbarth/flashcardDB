@@ -11,19 +11,12 @@
             // self::$db = new PDO( "mysql:host=localhost:3306;dbname=flashcard","Brian","Depeche" );   ********code to use locally
             // self::$db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );                    ********code to use locally
             self::$dbopts = parse_url(getenv('CLEARDB_DATABASE_URL'));
-            self::$db->register(new Csanquer\Silex\PdoServiceProvider\Provider\PDOServiceProvider('pdo'),
-               array(
-                'pdo.server' => array(
-                   'driver'   => 'pgsql',
-                   'user' => $dbopts["user"],
-                   'password' => $dbopts["pass"],
-                   'host' => $dbopts["host"],
-                   'port' => $dbopts["port"],
-                   'dbname' => ltrim($dbopts["path"],'/')
-                   )
-               )
-            );
-            
+            $db_server = $dbopts['host'];
+            $db_username = $dbopts['user'];
+            $db_password = $dbopts['pass'];
+            $cleardb_db = substr($dbopts['path'],1);
+
+            self::$db = new PDO( "mysql:host=$db_server;dbname=heroku_a5a10f179f5026e",$db_username,$db_password );     
         }
     } // end of init_db()
 
