@@ -4,6 +4,11 @@
 
     private static $db = null;
     private static $dbstr = null;
+    private static $cdb_server = null;
+    private static $cdb_username = null;
+    private static $cdb_password = null;
+    private static $cdb_sever = null;
+
 
 
     private static function init_db() {
@@ -11,33 +16,12 @@
             // self::$db = new PDO( "mysql:host=localhost:3306;dbname=flashcard","Brian","Depeche" );   ********code to use locally
             // self::$db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );                    ********code to use locally
             
-            self::$dbstr = getenv('CLEARDB_DATABASE_URL');
-            self::$dbstr = substr("$dbstr", 8);
-            $dbstrarruser = explode(":", $dbstr);
-            //Please don't look at these names. Yes I know that this is a little bit trash :D
-            $dbstrarrhost = explode("@", $dbstrarruser[1]);
-            $dbstrarrrecon = explode("?", $dbstrarrhost[1]);
-            $dbstrarrport = explode("/", $dbstrarrrecon[0]);
-            $dbpassword = $dbstrarrhost[0];
-            $dbhost = $dbstrarrport[0];
-            $dbport = $dbstrarrport[0];
-            $dbuser = $dbstrarruser[0];
-            $dbname = $dbstrarrport[1];
-            unset($dbstrarrrecon);
-            unset($dbstrarrport);
-            unset($dbstrarruser);
-            unset($dbstrarrhost);
-            unset($dbstr);
-            /*  //Uncomment this for debug reasons
-            echo $dbname . " - name<br>";
-            echo $dbhost . " - host<br>";
-            echo $dbport . " - port<br>";
-            echo $dbuser . " - user<br>";
-            echo $dbpassword . " - passwd<br>";
-            */
-            $dbanfang = 'mysql:host=' . $dbhost . ';dbname=' . $dbname;
-            self::$db = new PDO($dbanfang, $dbuser, $dbpassword);
-            //You can only use this with the standard port!
+            self::$dbstr = parse_url(getenv('CLEARDB_DATABASE_URL'));
+            self::$cdb_server = $dbstr['host'];
+            self::$cdb_username = $dbstr['user'];
+            self::$cdb_password = $dbstr['pass'];
+
+            self::$db = new PDO("mysql:host=" . self::$cdb_server . ";dbname=heroku_a5a10f179f5026e",$cdb_username,$cdb_password);
     
         }
     } // end of init_db()
