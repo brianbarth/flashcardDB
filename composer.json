@@ -1,8 +1,7 @@
 {
 
   "require" : {
-    "ext-mysql" : "*",
-    "csanquer/pdo-service-provider" : "~1.0"
+    "ext-mysql" : "*"
   }
   
 
