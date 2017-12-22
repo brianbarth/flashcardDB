@@ -2,26 +2,26 @@
 
  class NewWord {
 
-    private static $db = null;
-    private static $dbstr = null;
-    private static $cdb_server = null;
-    private static $cdb_username = null;
-    private static $cdb_password = null;
-    private static $cdb_sever = null;
+    var $db = null;
+    var $dbstr = null;
+    var $cdb_server = null;
+    var $cdb_username = null;
+    var $cdb_password = null;
+    var $cdb_sever = null;
 
 
 
     private static function init_db() {
         if ( self::$db == null ) {
-            // self::$db = new PDO( "mysql:host=localhost:3306;dbname=flashcard","Brian","Depeche" );   ********code to use locally
-            // self::$db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );                    ********code to use locally
+            // self::$db = new PDO( "mysql:host=localhost:3306;dbname=flashcard","Brian","Depeche" );  
+            // self::$db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );                   
             
-            self::$dbstr = parse_url(getenv('CLEARDB_DATABASE_URL'));
-            self::$cdb_server = $dbstr['host'];
-            self::$cdb_username = $dbstr['user'];
-            self::$cdb_password = $dbstr['pass'];
+            $dbstr = parse_url(getenv('CLEARDB_DATABASE_URL'));
+            $cdb_server = $dbstr['host'];
+            $cdb_username = $dbstr['user'];
+            $cdb_password = $dbstr['pass'];
 
-            self::$db = new PDO("mysql:host=" . self::$cdb_server . ";dbname=heroku_a5a10f179f5026e",self::$cdb_username,self::$cdb_password);
+            $db = new PDO("mysql:host=" . $cdb_server . ";dbname=heroku_a5a10f179f5026e",$cdb_username,$cdb_password);
     
         }
     } // end of init_db()
