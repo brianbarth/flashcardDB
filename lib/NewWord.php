@@ -21,7 +21,7 @@
             self::$cdb_username = $dbstr['user'];
             self::$cdb_password = $dbstr['pass'];
 
-            self::$db = new PDO("mysql:host=" . self::$cdb_server . ";dbname=heroku_a5a10f179f5026e",$cdb_username,$cdb_password);
+            self::$db = new PDO("mysql:host=" . self::$cdb_server . ";dbname=heroku_a5a10f179f5026e",self::$cdb_username,self::$cdb_password);
     
         }
     } // end of init_db()
