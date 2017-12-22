@@ -3,20 +3,42 @@
  class NewWord {
 
     private static $db = null;
-    private static $dbopts = null;
+    private static $dbstr = null;
 
 
     private static function init_db() {
         if ( self::$db == null ) {
             // self::$db = new PDO( "mysql:host=localhost:3306;dbname=flashcard","Brian","Depeche" );   ********code to use locally
             // self::$db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );                    ********code to use locally
-            self::$dbopts = parse_url(getenv('CLEARDB_DATABASE_URL'));
-            $db_server = $dbopts['host'];
-            $db_username = $dbopts['user'];
-            $db_password = $dbopts['pass'];
-            $cleardb_db = substr($dbopts['path'],1);
-
-            self::$db = new PDO( "mysql:host=$db_server;dbname=heroku_a5a10f179f5026e",$db_username,$db_password );     
+            
+            self::$dbstr = getenv('CLEARDB_DATABASE_URL');
+            self::$dbstr = substr("$dbstr", 8);
+            $dbstrarruser = explode(":", $dbstr);
+            //Please don't look at these names. Yes I know that this is a little bit trash :D
+            $dbstrarrhost = explode("@", $dbstrarruser[1]);
+            $dbstrarrrecon = explode("?", $dbstrarrhost[1]);
+            $dbstrarrport = explode("/", $dbstrarrrecon[0]);
+            $dbpassword = $dbstrarrhost[0];
+            $dbhost = $dbstrarrport[0];
+            $dbport = $dbstrarrport[0];
+            $dbuser = $dbstrarruser[0];
+            $dbname = $dbstrarrport[1];
+            unset($dbstrarrrecon);
+            unset($dbstrarrport);
+            unset($dbstrarruser);
+            unset($dbstrarrhost);
+            unset($dbstr);
+            /*  //Uncomment this for debug reasons
+            echo $dbname . " - name<br>";
+            echo $dbhost . " - host<br>";
+            echo $dbport . " - port<br>";
+            echo $dbuser . " - user<br>";
+            echo $dbpassword . " - passwd<br>";
+            */
+            $dbanfang = 'mysql:host=' . $dbhost . ';dbname=' . $dbname;
+            self::$db = new PDO($dbanfang, $dbuser, $dbpassword);
+            //You can only use this with the standard port!
+    
         }
     } // end of init_db()
 
