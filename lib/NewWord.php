@@ -2,26 +2,13 @@
 
  class NewWord {
 
-    var $db = null;
-    var $dbstr = null;
-    var $cdb_server = null;
-    var $cdb_username = null;
-    var $cdb_password = null;
-    var $cdb_sever = null;
-
-
+    private static $db = null;
 
     private static function init_db() {
         if ( self::$db == null ) {
-            // self::$db = new PDO( "mysql:host=localhost:3306;dbname=flashcard","Brian","Depeche" );  
-            // self::$db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );                   
-            
-            $dbstr = parse_url(getenv('CLEARDB_DATABASE_URL'));
-            $cdb_server = $dbstr['host'];
-            $cdb_username = $dbstr['user'];
-            $cdb_password = $dbstr['pass'];
 
-            $db = new PDO("mysql:host=" . $cdb_server . ";dbname=heroku_a5a10f179f5026e",$cdb_username,$cdb_password);
+            self::$db = new PDO( "mysql:host=localhost:3306;dbname=flashcard","Brian","Depeche" );  
+            self::$db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );                   
     
         }
     } // end of init_db()
